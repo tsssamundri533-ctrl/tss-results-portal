@@ -1,0 +1,23 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "student-1",
+      "description": "Student portrait",
+      "imageUrl": "https://picsum.photos/seed/student1/200/200",
+      "imageHint": "student portrait"
+    },
+    {
+      "id": "school-logo",
+      "description": "Official TSSS Logo",
+      "imageUrl": "https://i.postimg.cc/mD8T1hH8/Logo.png",
+      "imageHint": "school logo"
+    },
+    {
+      "id": "login-hero",
+      "description": "Students studying in classroom",
+      "imageUrl": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop",
+      "imageHint": "students classroom"
+    }
+  ]
+}

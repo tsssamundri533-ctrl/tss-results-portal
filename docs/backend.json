@@ -1,0 +1,199 @@
+{
+  "entities": {
+    "SchoolProfile": {
+      "title": "School Profile",
+      "description": "Institutional identity and configuration for TSSS.",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string" },
+        "schoolNameUrdu": { "type": "string" },
+        "logoURL": { "type": "string" },
+        "principalSignatureURL": { "type": "string" },
+        "directorSignatureURL": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "motto": { "type": "string" },
+        "startingRollNumber": { "type": "number" },
+        "gradingScale": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "grade": { "type": "string" },
+              "min": { "type": "number" },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "resultCardRemarks": {
+          "type": "object",
+          "properties": {
+            "excellent": { "type": "string" },
+            "good": { "type": "string" },
+            "needsImprovement": { "type": "string" }
+          }
+        }
+      },
+      "required": ["schoolName"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Staff member account details.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "teacher"] },
+        "schoolId": { "type": "string" },
+        "phone": { "type": "string" }
+      }
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student enrollment and academic record.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "rollNumber": { "type": "string" },
+        "name": { "type": "string" },
+        "fatherName": { "type": "string" },
+        "gender": { "type": "string", "enum": ["male", "female"] },
+        "class": { "type": "string" },
+        "section": { "type": "string" },
+        "corridor": { "type": "string", "enum": ["Corridor A", "Corridor B", "Corridor C"] },
+        "qrToken": { "type": "string" },
+        "schoolId": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "withdrawn", "graduated"] }
+      }
+    },
+    "Exam": {
+      "title": "Exam",
+      "description": "Assessment cycle configuration.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "examTypeId": { "type": "string", "enum": ["first-term", "monthly", "mid", "annual", "sent-up"] },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "isLocked": { "type": "boolean" },
+        "passPercentage": { "type": "number" }
+      }
+    },
+    "DateSheet": {
+      "title": "Date Sheet",
+      "description": "Custom examination timetable for Roll Number Slips.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "examTitle": { "type": "string" },
+        "className": { "type": "string" },
+        "papers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "subjectId": { "type": "string" },
+              "subjectName": { "type": "string" },
+              "date": { "type": "string" },
+              "reportingTime": { "type": "string" },
+              "startTime": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "Mark": {
+      "title": "Mark",
+      "description": "Individual subject score.",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "examId": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "marks": { "type": "number" },
+        "enteredBy": { "type": "string" }
+      }
+    },
+    "Result": {
+      "title": "Result",
+      "description": "Computed final performance report.",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "examId": { "type": "string" },
+        "totalObtained": { "type": "number" },
+        "totalMax": { "type": "number" },
+        "percentage": { "type": "number" },
+        "grade": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "Daily presence record.",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "status": { "type": "string", "enum": ["present", "absent"] },
+        "timestamp": { "type": "string" }
+      }
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "description": "Teacher workload mapping.",
+      "type": "object",
+      "properties": {
+        "teacherId": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "className": { "type": "string" },
+        "subject": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "sessionId": { "type": "string" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["password"]
+  },
+  "firestore": {
+    "/schools/tss-main-school": {
+      "schema": "SchoolProfile",
+      "description": "Root institutional document."
+    },
+    "/schools/tss-main-school/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Staff registry."
+    },
+    "/schools/tss-main-school/students/{studentId}": {
+      "schema": "Student",
+      "description": "Student directory."
+    },
+    "/schools/tss-main-school/exams/{examId}": {
+      "schema": "Exam",
+      "description": "Academic assessments."
+    },
+    "/schools/tss-main-school/dateSheets/{classId}": {
+      "schema": "DateSheet",
+      "description": "Saved timetables for admit cards."
+    },
+    "/schools/tss-main-school/marks/{markId}": {
+      "schema": "Mark",
+      "description": "Student scores."
+    },
+    "/schools/tss-main-school/results/{resultId}": {
+      "schema": "Result",
+      "description": "Final gazettes."
+    },
+    "/schools/tss-main-school/attendance/{examId}/sessions/{date}/records/{studentId}": {
+      "schema": "Attendance",
+      "description": "Presence log."
+    },
+    "/schools/tss-main-school/assignments/{assignmentId}": {
+      "schema": "Assignment",
+      "description": "Workload mappings."
+    }
+  }
+}

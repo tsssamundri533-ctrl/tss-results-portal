@@ -1,0 +1,22 @@
+
+{
+  "name": "The Spirit School Samundri",
+  "short_name": "TSSS Portal",
+  "description": "Elite School Management System for TSSS Samundri",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#1B62DE",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dc4h1odcj/image/upload/v1740643729/tsss/Logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/dc4h1odcj/image/upload/v1740643729/tsss/Logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
