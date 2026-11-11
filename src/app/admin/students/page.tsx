@@ -452,16 +452,16 @@ export default function StudentsManagementPage() {
 
           <Button 
             variant="outline" 
-            className="rounded-full gap-2 h-11 px-5 font-bold border-2 dark:border-white/10 dark:text-white"
+            className="rounded-full gap-2 h-11 px-4 sm:px-5 font-bold border-2 dark:border-white/10 dark:text-white text-xs sm:text-sm flex-1 sm:flex-initial"
             onClick={() => setIsImportOpen(true)}
           >
             <FileSpreadsheet className="h-4 w-4 text-emerald-500" />
             Bulk Import
           </Button>
-          <Button className="rounded-full shadow-lg h-11 px-6 gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold" asChild>
+          <Button className="rounded-full shadow-lg h-11 px-4 sm:px-6 gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold text-xs sm:text-sm flex-1 sm:flex-initial" asChild>
             <Link href="/admin/students/new">
-              <Plus className="h-5 w-5" />
-              Manual Enrollment
+              <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
+              Enroll Student
             </Link>
           </Button>
         </div>
@@ -477,9 +477,9 @@ export default function StudentsManagementPage() {
             onChange={(e) => setSearchTerm(e.target.value)} 
           />
         </div>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-[1fr_1fr_auto] sm:flex gap-2 sm:gap-3">
           <Select value={filterClass} onValueChange={(v) => { setFilterClass(v); setFilterSection('all'); }}>
-            <SelectTrigger className="w-40 sm:w-[180px] h-12 border-none bg-white dark:bg-card dark:text-white rounded-2xl font-bold shadow-sm">
+            <SelectTrigger className="w-full sm:w-[180px] h-12 border-none bg-white dark:bg-card dark:text-white rounded-2xl font-bold shadow-sm text-xs sm:text-sm">
               <SelectValue placeholder="All Classes" />
             </SelectTrigger>
             <SelectContent className="dark:bg-card dark:border-white/5">
@@ -493,7 +493,7 @@ export default function StudentsManagementPage() {
             onValueChange={setFilterSection} 
             disabled={filterClass === 'all'}
           >
-            <SelectTrigger className="w-40 sm:w-[160px] h-12 border-none bg-white dark:bg-card dark:text-white rounded-2xl font-bold shadow-sm">
+            <SelectTrigger className="w-full sm:w-[160px] h-12 border-none bg-white dark:bg-card dark:text-white rounded-2xl font-bold shadow-sm text-xs sm:text-sm">
               <SelectValue placeholder="All Sections" />
             </SelectTrigger>
             <SelectContent className="dark:bg-card dark:border-white/5">

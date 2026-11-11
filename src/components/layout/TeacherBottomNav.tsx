@@ -19,7 +19,7 @@ export function TeacherBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 h-16 bg-white/90 dark:bg-navy-900/90 border-t border-surface-200 dark:border-white/5 z-50 flex items-center justify-around px-2 shadow-[0_-4px_24px_rgba(0,0,0,0.1)] backdrop-blur-xl md:hidden pb-safe">
+    <nav className="fixed bottom-0 left-0 right-0 h-16 bg-white/95 dark:bg-navy-900/95 border-t border-surface-200 dark:border-white/5 z-50 flex items-center justify-around px-2 shadow-[0_-4px_24px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden pb-[env(safe-area-inset-bottom)] select-none">
       {TABS.map((tab) => {
         const isActive = pathname === tab.href || (tab.href !== '/teacher/dashboard' && pathname.startsWith(tab.href));
         

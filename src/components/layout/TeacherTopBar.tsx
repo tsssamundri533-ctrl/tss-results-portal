@@ -25,15 +25,15 @@ export function TeacherTopBar() {
   }, []);
 
   return (
-    <header className="h-16 bg-white/80 dark:bg-navy-900/80 backdrop-blur-md border-b border-surface-200 dark:border-white/5 sticky top-0 z-40 px-4 md:px-8 flex items-center justify-between shadow-sm transition-colors">
-      <div className="flex items-center gap-4">
-        <div className="flex flex-col md:hidden">
-          <h1 className="text-[12px] font-outfit font-black text-navy-900 dark:text-white leading-none uppercase tracking-tight">
-            {settings?.profile?.schoolName || 'The Spirit School Samundri'}
+    <header className="h-14 sm:h-16 bg-white/80 dark:bg-navy-900/80 backdrop-blur-md border-b border-surface-200 dark:border-white/5 sticky top-0 z-40 px-3 sm:px-6 md:px-8 flex items-center justify-between shadow-sm transition-colors">
+      <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+        <div className="flex flex-col md:hidden min-w-0">
+          <h1 className="text-[11px] sm:text-xs font-outfit font-black text-navy-900 dark:text-white leading-tight uppercase tracking-tight truncate max-w-[110px] xs:max-w-[150px]">
+            {settings?.profile?.schoolName || 'TSS Samundri'}
           </h1>
-          <div className="flex items-center gap-2 mt-1">
-             <span className="text-[8px] text-slate-400 font-bold uppercase tracking-widest">
-               {currentTime ? format(currentTime, 'EEEE, MMM do') : '...'}
+          <div className="flex items-center gap-2 mt-0.5">
+             <span className="text-[7.5px] sm:text-[8px] text-slate-400 font-bold uppercase tracking-widest truncate">
+               {currentTime ? format(currentTime, 'EEE, MMM d') : '...'}
              </span>
           </div>
         </div>
@@ -44,15 +44,13 @@ export function TeacherTopBar() {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 md:gap-4">
+      <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
         <TermSwitcher />
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-          <SyncStatusBadge />
-        </div>
+        <ThemeToggle />
+        <SyncStatusBadge />
 
-        <Link href="/teacher/profile" className="md:hidden">
-          <div className="h-10 w-10 rounded-2xl bg-primary-600 flex items-center justify-center text-white font-black text-sm border-2 border-white dark:border-navy-800 shadow-xl transition-all active:scale-95">
+        <Link href="/teacher/profile" className="md:hidden shrink-0">
+          <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-primary-600 flex items-center justify-center text-white font-black text-xs border border-white/20 shadow-md transition-all active:scale-95">
             {userName?.[0] || user?.displayName?.[0] || 'T'}
           </div>
         </Link>

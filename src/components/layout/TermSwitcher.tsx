@@ -69,15 +69,15 @@ export function TermSwitcher() {
         <Button 
           variant="outline" 
           size="sm" 
-          className="h-9 px-3 gap-2 rounded-xl bg-surface-50 dark:bg-navy-950/80 border-surface-200 dark:border-white/10 hover:border-primary-500/40 text-foreground font-semibold text-xs shadow-sm transition-all"
+          className="h-9 px-2 sm:px-3 gap-1.5 sm:gap-2 rounded-xl bg-surface-50 dark:bg-navy-950/80 border-surface-200 dark:border-white/10 hover:border-primary-500/40 text-foreground font-semibold text-xs shadow-sm transition-all max-w-[140px] xs:max-w-[170px] sm:max-w-none shrink-0"
         >
           <div className="h-6 w-6 rounded-lg bg-primary-500/10 dark:bg-primary-500/20 text-primary-600 dark:text-primary-400 flex items-center justify-center shrink-0">
             <GraduationCap className="h-3.5 w-3.5" />
           </div>
-          <div className="flex flex-col items-start text-left leading-tight">
-            <span className="text-[9px] font-black uppercase tracking-wider text-muted-foreground">Term</span>
-            <span className="font-bold text-xs truncate max-w-[130px] sm:max-w-[170px] text-navy-900 dark:text-white">
-              {currentExam?.title || 'Select Term'}
+          <div className="flex flex-col items-start text-left leading-tight min-w-0">
+            <span className="text-[8px] font-black uppercase tracking-wider text-muted-foreground hidden sm:block">Term</span>
+            <span className="font-bold text-[11px] sm:text-xs truncate max-w-[70px] xs:max-w-[95px] sm:max-w-[170px] text-navy-900 dark:text-white">
+              {currentExam?.title || 'Term'}
             </span>
           </div>
           {currentExam?.isLocked ? (
@@ -85,7 +85,7 @@ export function TermSwitcher() {
           ) : (
             <div className="h-2 w-2 rounded-full bg-emerald-500 shrink-0 animate-pulse" />
           )}
-          <ChevronDown className="h-3.5 w-3.5 text-muted-foreground opacity-60 ml-0.5 shrink-0" />
+          <ChevronDown className="h-3.5 w-3.5 text-muted-foreground opacity-60 ml-0.5 shrink-0 hidden xs:block" />
         </Button>
       </DropdownMenuTrigger>
 

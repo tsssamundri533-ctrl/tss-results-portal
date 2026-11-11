@@ -20,7 +20,7 @@ export function SyncStatusBadge() {
         <TooltipTrigger asChild>
           <div 
             className={cn(
-              "flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all duration-300",
+              "flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all duration-300 shrink-0",
               isOnline ? "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 dark:text-emerald-400" : "text-rose-600 bg-rose-50 dark:bg-rose-950/40 dark:text-rose-400"
             )}
           >

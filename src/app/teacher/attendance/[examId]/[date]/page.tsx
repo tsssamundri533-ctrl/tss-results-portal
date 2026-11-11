@@ -148,32 +148,32 @@ function TeacherManualAttendanceContent({ params }: { params: Promise<{ examId: 
         {filteredStudents.map(student => {
           const status = getStatus(student.id);
           return (
-            <Card key={student.id} className="border-none shadow-sm rounded-2xl bg-white dark:bg-card p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Avatar className="h-10 w-10 rounded-xl">
+            <Card key={student.id} className="border-none shadow-sm rounded-2xl bg-white dark:bg-card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors">
+              <div className="flex items-center gap-3 min-w-0">
+                <Avatar className="h-10 w-10 rounded-xl shrink-0">
                   <AvatarImage src={student.photoURL} />
                   <AvatarFallback className="font-bold text-xs">{student.name.substring(0, 2)}</AvatarFallback>
                 </Avatar>
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold text-primary-600">#{student.rollNumber}</span>
-                    <h4 className="font-bold text-sm text-navy-900 dark:text-white">{student.name}</h4>
+                    <span className="font-mono text-xs font-bold text-primary-600 shrink-0">#{student.rollNumber}</span>
+                    <h4 className="font-bold text-sm text-navy-900 dark:text-white truncate">{student.name}</h4>
                   </div>
-                  <p className="text-xs text-muted-foreground">F: {student.fatherName || 'N/A'} • Sec: {student.section}</p>
+                  <p className="text-xs text-muted-foreground truncate">F: {student.fatherName || 'N/A'} • Sec: {student.section}</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-white/5">
                 <Button
                   size="sm"
                   variant={status === 'present' ? 'default' : 'outline'}
                   onClick={() => markAttendance(student, 'present')}
                   className={cn(
-                    "rounded-xl font-bold text-xs h-9 px-4",
-                    status === 'present' ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "border-emerald-200 text-emerald-600"
+                    "rounded-xl font-bold text-xs h-10 sm:h-9 px-4 w-full sm:w-auto transition-all active:scale-95",
+                    status === 'present' ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/30" : "border-emerald-200 dark:border-emerald-900/50 text-emerald-600 dark:text-emerald-400"
                   )}
                 >
-                  <CheckCircle2 className="h-4 w-4 mr-1" />
+                  <CheckCircle2 className="h-4 w-4 mr-1.5" />
                   Present
                 </Button>
                 <Button
@@ -181,11 +181,11 @@ function TeacherManualAttendanceContent({ params }: { params: Promise<{ examId: 
                   variant={status === 'absent' ? 'default' : 'outline'}
                   onClick={() => markAttendance(student, 'absent')}
                   className={cn(
-                    "rounded-xl font-bold text-xs h-9 px-4",
-                    status === 'absent' ? "bg-rose-600 hover:bg-rose-700 text-white" : "border-rose-200 text-rose-600"
+                    "rounded-xl font-bold text-xs h-10 sm:h-9 px-4 w-full sm:w-auto transition-all active:scale-95",
+                    status === 'absent' ? "bg-rose-600 hover:bg-rose-700 text-white shadow-md shadow-rose-600/30" : "border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400"
                   )}
                 >
-                  <XCircle className="h-4 w-4 mr-1" />
+                  <XCircle className="h-4 w-4 mr-1.5" />
                   Absent
                 </Button>
               </div>

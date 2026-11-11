@@ -22,6 +22,7 @@ export function AdminTopBar() {
   const { isSidebarLocked } = useUIStore();
   const [time, setTime] = useState<Date | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -31,23 +32,23 @@ export function AdminTopBar() {
   }, []);
 
   return (
-    <header className="h-16 bg-white/80 dark:bg-navy-900/80 border-b border-surface-200 dark:border-white/5 sticky top-0 z-40 px-4 md:px-8 flex items-center justify-between shadow-sm backdrop-blur-xl transition-all duration-300">
-      <div className="flex items-center gap-2 md:gap-4 flex-1">
+    <header className="h-14 sm:h-16 bg-white/80 dark:bg-navy-900/80 border-b border-surface-200 dark:border-white/5 sticky top-0 z-40 px-3 sm:px-6 md:px-8 flex items-center justify-between shadow-sm backdrop-blur-xl transition-all duration-300">
+      <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
         {mounted ? (
-          <Sheet>
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden text-foreground h-11 w-11 hover:bg-slate-100 dark:hover:bg-white/5">
+              <Button variant="ghost" size="icon" className="md:hidden text-foreground h-9 w-9 hover:bg-slate-100 dark:hover:bg-white/5 shrink-0">
                 <Menu className="w-5 h-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 border-none w-[280px] bg-navy-900">
               <SheetTitle className="sr-only">Admin Navigation</SheetTitle>
               <SheetDescription className="sr-only">Mobile navigation sidebar for admin portal</SheetDescription>
-              <AdminSidebar isMobile />
+              <AdminSidebar isMobile onNavigate={() => setMobileMenuOpen(false)} />
             </SheetContent>
           </Sheet>
         ) : (
-          <Button variant="ghost" size="icon" className="md:hidden text-foreground h-11 w-11 opacity-50" disabled>
+          <Button variant="ghost" size="icon" className="md:hidden text-foreground h-9 w-9 opacity-50 shrink-0" disabled>
             <Menu className="w-5 h-5" />
           </Button>
         )}
@@ -60,19 +61,17 @@ export function AdminTopBar() {
           />
         </div>
 
-        <div className="md:hidden flex items-center ml-1">
-           <span className="font-outfit font-black text-[11px] uppercase tracking-tighter text-navy-900 dark:text-white truncate max-w-[140px]">
-             {settings?.profile?.schoolName || 'TSSS'}
+        <div className="md:hidden flex items-center ml-1 min-w-0">
+           <span className="font-outfit font-black text-[11px] sm:text-xs uppercase tracking-tighter text-navy-900 dark:text-white truncate max-w-[110px] xs:max-w-[150px]">
+             {settings?.profile?.schoolName || 'TSS Samundri'}
            </span>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 md:gap-4">
+      <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
         <TermSwitcher />
-        <div className="flex items-center gap-1.5 md:gap-3">
-          <ThemeToggle />
-          <SyncStatusBadge />
-        </div>
+        <ThemeToggle />
+        <SyncStatusBadge />
 
         <div className="hidden lg:flex flex-col items-end min-w-[130px] border-l border-slate-100 dark:border-white/5 pl-5">
           {time ? (
@@ -88,9 +87,9 @@ export function AdminTopBar() {
           )}
         </div>
 
-        <Button variant="ghost" size="icon" className="relative text-slate-400 hover:text-primary-600 h-10 w-10 rounded-xl transition-colors">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-white dark:border-navy-900 shadow-sm"></span>
+        <Button variant="ghost" size="icon" className="relative text-slate-400 hover:text-primary-600 h-9 w-9 rounded-xl transition-colors shrink-0">
+          <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border-2 border-white dark:border-navy-900 shadow-sm"></span>
         </Button>
       </div>
     </header>

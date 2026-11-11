@@ -80,9 +80,10 @@ const NAV_GROUPS = [
 
 interface AdminSidebarProps {
   isMobile?: boolean;
+  onNavigate?: () => void;
 }
 
-export function AdminSidebar({ isMobile: isMobileProp }: AdminSidebarProps) {
+export function AdminSidebar({ isMobile: isMobileProp, onNavigate }: AdminSidebarProps) {
   const pathname = usePathname();
   const { logout } = useAuth();
   const { user } = useAuthStore();
@@ -155,6 +156,7 @@ export function AdminSidebar({ isMobile: isMobileProp }: AdminSidebarProps) {
                   const content = (
                     <Link
                       href={item.href}
+                      onClick={() => onNavigate?.()}
                       className={cn(
                         "flex items-center gap-3 px-3 h-11 rounded-xl transition-all group relative",
                         isActive 
